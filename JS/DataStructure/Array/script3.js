@@ -12,12 +12,7 @@ const mergeTwoSortedArrays = (arr1, arr2) => {
   let j = 1;
 
   // check arrays input
-  if (arr1.length === 0) {
-    return arr2;
-  }
-  if (arr2 === 0) {
-    return arr1;
-  }
+  arr1.length == 0 || arr2 == 0 ? arr2 : arr1;
 
   while (arr1Item || arr2Item) {
     // console.log(arr1Item, arr2Item);
