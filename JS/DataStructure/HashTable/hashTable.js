@@ -43,6 +43,7 @@ class HashTable {
 
   keys() {
     const keysArray = [];
+    // loop through all elements
     for (let i = 0; i < this.data.length; i++) {
       if (this.data[i]) {
         // console.log(this.data[i][0]);
