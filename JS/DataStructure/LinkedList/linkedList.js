@@ -40,6 +40,47 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  printLinkedList() {
+    const array = [];
+    let currentNode = this.head;
+    // as long there is a currentNode, add it to the array
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      // update the currentNode to equal currentNode.next
+      currentNode = currentNode.next;
+    }
+    return array;
+  }
+
+  // insert element at specific index
+  insert(atIndex, value) {
+    // first check the params
+    // As long  atIndex is greater or equal to the this.length
+    if (atIndex >= this.length) {
+      // add the value to the end of the List
+      return this.append(value);
+    }
+    // create a new node
+    const node = new NodeClass(value);
+    const firstNode = this.traverseToIndex(atIndex - 1);
+    const pointer = firstNode.next;
+    firstNode.next = node;
+    node.next = pointer;
+    this.length++;
+    return this.printLinkedList();
+  }
+
+  traverseToIndex(index) {
+    // check if the index is valid
+    let counter = 0;
+    let currentNode = this.head;
+    while (counter !== index) {
+      currentNode = currentNode.next;
+      counter++;
+    }
+    return currentNode;
+  }
 }
 
 const linkedList = new LinkedList("apple");
@@ -50,4 +91,7 @@ linkedList.append("banana");
 // prepend (blueberries) to the beginning of linkedList
 // blueberries --> apple --> orange --> banana
 linkedList.prepend("blueberries");
-console.log(linkedList);
+
+// insert: grapefruits at index 2
+linkedList.insert(2, "grapefruits");
+console.log(linkedList.printLinkedList());
