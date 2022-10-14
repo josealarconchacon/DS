@@ -68,11 +68,10 @@ class LinkedList {
     firstNode.next = node;
     node.next = pointer;
     this.length++;
-    return this.printLinkedList();
+    return this;
   }
 
   traverseToIndex(index) {
-    // check if the index is valid
     let counter = 0;
     let currentNode = this.head;
     while (counter !== index) {
@@ -81,17 +80,27 @@ class LinkedList {
     }
     return currentNode;
   }
+
+  // remove
+  remove(atIndex) {
+    // get a reference of the first node
+    const firstNode = this.traverseToIndex(atIndex - 1);
+    const deleteNode = firstNode.next;
+    firstNode.next = deleteNode.next;
+    this.length--;
+    return this;
+  }
 }
 
 const linkedList = new LinkedList("apple");
 // append :  orange --> banana to LinkedList
 linkedList.append("orange");
 linkedList.append("banana");
-
 // prepend (blueberries) to the beginning of linkedList
 // blueberries --> apple --> orange --> banana
 linkedList.prepend("blueberries");
-
 // insert: grapefruits at index 2
 linkedList.insert(2, "grapefruits");
+// remove: orange at index 3
+linkedList.remove(3);
 console.log(linkedList.printLinkedList());
